@@ -1,10 +1,11 @@
 import { useState } from "react";
-import { HashRouter, Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
 import { TranslatorService, type TranslationResult } from "./translator";
 import TranslationPage from "./TranslationPage";
 
 function InputPage() {
   const [inputText, setInputText] = useState("");
+  const navigate = useNavigate();
   const translator = new TranslatorService();
 
   const handleTranslate = () => {
@@ -12,7 +13,7 @@ function InputPage() {
       const result = translator.translate(inputText.trim());
       // Store the full translation result in sessionStorage to access it on the next page
       sessionStorage.setItem("translationResult", JSON.stringify(result));
-      window.location.hash = "#/translation";
+      navigate("/translation");
     }
   };
 
@@ -45,6 +46,8 @@ function InputPage() {
 }
 
 function TranslationPageWrapper() {
+  const navigate = useNavigate();
+
   // Retrieve the translation from sessionStorage
   const storedTranslation = sessionStorage.getItem("translationResult");
   // Parse the stored JSON string back to an object
@@ -61,7 +64,7 @@ function TranslationPageWrapper() {
   const handleBackToInput = () => {
     // Clear the stored translation when going back
     sessionStorage.removeItem("translationResult");
-    window.location.hash = "#/";
+    navigate("/");
   };
 
   return (
@@ -74,12 +77,10 @@ function TranslationPageWrapper() {
 
 function App() {
   return (
-    <HashRouter>
-      <Routes>
-        <Route path="/" element={<InputPage />} />
-        <Route path="/translation" element={<TranslationPageWrapper />} />
-      </Routes>
-    </HashRouter>
+    <Routes>
+      <Route path="/" element={<InputPage />} />
+      <Route path="/translation" element={<TranslationPageWrapper />} />
+    </Routes>
   );
 }
 
