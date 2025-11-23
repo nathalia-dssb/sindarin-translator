@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Single Page App</title>
+    <script type="text/javascript">
+      // fallback to index.html for client-side routing
+      (function(l) {
+        if (l.pathname === "/404.html" || l.pathname === "/sindarin-translator/404.html") {
+          window.location = l.origin + l.pathname.replace(/\/404\.html$/, "/");
+        }
+      })(window.location);
+    </script>
+  </head>
+  <body>
+  </body>
+</html>
