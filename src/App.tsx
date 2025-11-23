@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, useNavigate } from "react-router-dom";
 import { TranslatorService, type TranslationResult } from "./translator";
 import TranslationPage from "./TranslationPage";
 
@@ -77,10 +77,12 @@ function TranslationPageWrapper() {
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<InputPage />} />
-      <Route path="/translation" element={<TranslationPageWrapper />} />
-    </Routes>
+    <Router>
+      <Routes>
+        <Route path="/" element={<InputPage />} />
+        <Route path="/translation" element={<TranslationPageWrapper />} />
+      </Routes>
+    </Router>
   );
 }
 
