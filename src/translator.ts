@@ -168,7 +168,7 @@ export class TranslatorService {
       return spanishWord;
     }
 
-    for (const [category, data] of Object.entries(
+    for (const [, data] of Object.entries(
       this.dictionaries.es_sin.categorias
     )) {
       if (data.subcategorias) {
@@ -182,7 +182,7 @@ export class TranslatorService {
       }
     }
 
-    for (const [category, data] of Object.entries(
+    for (const [, data] of Object.entries(
       this.dictionaries.es_ga.categorias
     )) {
       if (data.subcategorias) {

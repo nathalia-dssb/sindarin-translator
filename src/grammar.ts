@@ -164,7 +164,7 @@ export class CFGrammar {
 
     const allEntries = [];
     for (const dict of allDictionaries) {
-      for (const [category, data] of Object.entries(dict.categorias)) {
+      for (const [, data] of Object.entries(dict.categorias)) {
         if (data.subcategorias) {
           for (const entries of Object.values(data.subcategorias)) {
             for (const entry of entries) {
